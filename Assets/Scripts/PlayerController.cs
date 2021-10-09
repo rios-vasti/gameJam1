@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private float speed = 5f;
     private bool isRight = true;
     private float moveX;
+    private float moveY;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,11 +32,22 @@ public class PlayerController : MonoBehaviour
             isRight = false;
             sprite.flipX = true;
         }
+        moveY = Input.GetAxis("Vertical");
+        /*if (rb.velocity.y > 0.05 && !isRight)
+        {
+            isRight = true;
+            sprite.flipX = false;
+        }
+        else if (rb.velocity.x < -0.05 && isRight)
+        {
+            isRight = false;
+            sprite.flipX = true;
+        }*/
     }
 
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveX * speed, rb.velocity.y);
+        rb.velocity = new Vector2(moveX * speed, moveY * speed);
         animator.SetFloat("xVelo", Mathf.Abs(rb.velocity.x));
     }
 }
