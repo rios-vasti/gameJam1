@@ -21,4 +21,8 @@ public class StartUIController : MonoBehaviour
     {
         
     }
+    public void DisplayMainMenu()
+    {
+        SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
+    }
 }
