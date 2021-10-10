@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = new Vector2(moveX * speed, moveY * speed);
+        Debug.Log("xVelo: " + rb.velocity.x);
         animator.SetFloat("xVelo", Mathf.Abs(rb.velocity.x));
     }
 }
