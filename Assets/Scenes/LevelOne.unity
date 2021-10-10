@@ -503,7 +503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 815844020016433013, guid: b571706e5d51e411fa2eac57683a01be, type: 3}
       propertyPath: m_Name
-      value: PlayerBat
+      value: 32x32-bat-sprite_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b571706e5d51e411fa2eac57683a01be, type: 3}

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 815844020016433014}
   - component: {fileID: -3493610196962451716}
   m_Layer: 5
-  m_Name: PlayerBat
+  m_Name: 32x32-bat-sprite_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
