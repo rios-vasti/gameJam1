@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private bool isRight = true;
     private float moveX;
     private float moveY;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -33,22 +34,22 @@ public class PlayerController : MonoBehaviour
             sprite.flipX = true;
         }
         moveY = Input.GetAxis("Vertical");
-        /*if (rb.velocity.y > 0.05 && !isRight)
-        {
-            isRight = true;
-            sprite.flipX = false;
-        }
-        else if (rb.velocity.x < -0.05 && isRight)
-        {
-            isRight = false;
-            sprite.flipX = true;
-        }*/
+ 
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spike"))
+        {
+            Debug.Log("Hit Spike");
+            //call the Game Manager to restart the level intead of the player getting destroyed
+            Destroy(gameObject);
+            
+        }
+    }
     void FixedUpdate()
     {
         rb.velocity = new Vector2(moveX * speed, moveY * speed);
-        Debug.Log("xVelo: " + rb.velocity.x);
+        //Debug.Log("xVelo: " + rb.velocity.x);
         animator.SetFloat("xVelo", Mathf.Abs(rb.velocity.x));
     }
 }
