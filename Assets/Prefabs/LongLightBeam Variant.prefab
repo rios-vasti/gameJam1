@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2853125425042771790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2802591363249704183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3e51e088401df4b841a162f311be42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightSpeed: 20
 --- !u!1001 &7465390354450870386
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9,7 +22,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4719395304304573573, guid: b47bf8257a13318419769f9ea09494dd, type: 3}
       propertyPath: m_Name
-      value: LongLightBeam
+      value: LongLightBeam Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4719395304304573573, guid: b47bf8257a13318419769f9ea09494dd, type: 3}
+      propertyPath: m_TagString
+      value: LightBeam
       objectReference: {fileID: 0}
     - target: {fileID: 5705455388732994930, guid: b47bf8257a13318419769f9ea09494dd, type: 3}
       propertyPath: m_Intensity
@@ -73,3 +90,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b47bf8257a13318419769f9ea09494dd, type: 3}
+--- !u!1 &2802591363249704183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4719395304304573573, guid: b47bf8257a13318419769f9ea09494dd, type: 3}
+  m_PrefabInstance: {fileID: 7465390354450870386}
+  m_PrefabAsset: {fileID: 0}
