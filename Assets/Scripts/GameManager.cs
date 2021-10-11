@@ -10,9 +10,10 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     private static int currentLevel = 0;
     private static float time = 0;
-    private static float bestTime = float.MaxValue;
+    //private static float bestTime = float.MaxValue;
     public Text timeText;
     public Text playerBestTime;
+    public Text finalTime;
     public string[] levels = new string[] { "LevelOne", "LevelTwo", "LevelThree"}; 
     //load and unload scene 
     //SceneManager.LoadScene("LevelName", LoadSceneMode.Single);
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else if (instance != this)
         {
@@ -37,15 +39,21 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameObject tmp = GameObject.FindGameObjectWithTag("Time");
+        timeText = (tmp != null) ? tmp.GetComponent<Text>() : null;
         time = time + Time.deltaTime;
         TimeSpan timetoDisplay = TimeSpan.FromSeconds(time);
-        timeText.text = "Time: " + timetoDisplay.Minutes.ToString() + ":" + timetoDisplay.Seconds.ToString();
+        if (timeText != null)
+        {
+            timeText.text = "Time: " + timetoDisplay.Minutes.ToString() + ":" + timetoDisplay.Seconds.ToString();
+        }
+        
 
-        if (bestTime != float.MaxValue)
+ /*       if (bestTime != float.MaxValue)
         {
             TimeSpan bestTimeDisplay = TimeSpan.FromSeconds(bestTime);
-            playerBestTime.text = "Best Time: " + bestTimeDisplay.Minutes.ToString() + ":" + timetoDisplay.Seconds.ToString();
-        }
+            playerBestTime.text = "Best Time: " + bestTimeDisplay.Minutes.ToString() + ":" + bestTimeDisplay.Seconds.ToString();
+        }*/
 
     }
 
@@ -60,20 +68,27 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("Finished the levels"); 
-            float finishTime = time;
-            TimeSpan timetoDisplay = TimeSpan.FromSeconds(finishTime);
-            if (finishTime < bestTime)
+            
+            /* if (finishTime < bestTime)
             {
-                bestTime = finishTime; 
-            }
-            //remove the loop to the current level
+                //bestTime = finishTime; 
+            }*/
             currentLevel = 0;
-            SceneManager.LoadScene(levels[currentLevel], LoadSceneMode.Single);
-            // call finish screen
-            //display the finishTime 
+            SceneManager.LoadScene("EndgameScreen", LoadSceneMode.Single);
+
+            Invoke("delayedLoad", 1f);
         }
         
 
+    }
+
+    private void delayedLoad()
+    {
+        float finishTime = time-1;
+        TimeSpan timetoDisplay = TimeSpan.FromSeconds(finishTime);
+        time = 0;
+        finalTime = GameObject.FindGameObjectWithTag("FinalTime").GetComponent<Text>();
+        finalTime.text = "Your time was: " + timetoDisplay.Minutes.ToString() + ":" + timetoDisplay.Seconds.ToString();
     }
 
     public void restartLevel()
