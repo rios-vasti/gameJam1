@@ -11,12 +11,14 @@ public class PlayerController : MonoBehaviour
     private bool isRight = true;
     private float moveX;
     private float moveY;
+    private GameManager gameManager; 
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -38,12 +40,16 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Spike"))
+        if (collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("LightBeam"))
         {
             Debug.Log("Hit Spike");
             //call the Game Manager to restart the level intead of the player getting destroyed
-            Destroy(gameObject);
-            
+            gameManager.restartLevel();
+
+        }
+        if (collision.gameObject.CompareTag("Exit"))
+        {
+            gameManager.levelPassed();
         }
     }
     void FixedUpdate()
